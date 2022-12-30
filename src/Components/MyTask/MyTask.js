@@ -2,9 +2,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/AuthProvider';
-import img from '../Header/task.png'
+import Loader from '../Loader';
 
 const MyTask = () => {
     const { user } = useContext(AuthContext)
@@ -22,7 +22,7 @@ const MyTask = () => {
         },
     });
     if (isLoading) {
-        <p>Loading...</p>
+        <Loader />
     }
     const handleStatusUpdate = (_id) => {
         fetch(`http://localhost:5000/allTask/${_id}`, {
@@ -43,7 +43,7 @@ const MyTask = () => {
             });
     };
     let handleDelete = (_id) => {
-        fetch(`https://task-managment-server.vercel.app/alltasks/${_id}`, {
+        fetch(`http://localhost:5000/allTask/${_id}`, {
             method: "DELETE",
         })
             .then((res) => res.json())
@@ -113,7 +113,13 @@ const MyTask = () => {
                         </table>
                     </div>
 
-                    : <p>You didn't added any task yet</p>
+                    : <>
+                        <p className='flex items-center justify-center font-extrabold '>You didn't ADDED any task yet</p>
+                        <Link to='/addTask'><button aria-label="Scroll down"
+                            className="flex items-center justify-center w-32 h-10 mx-auto duration-300 transform border border-gray-400  hover:text-teal-400 hover:border-teal-400 hover:shadow hover:scale-110" >Add Task</button></Link>
+
+
+                    </>
             }
 
         </div>

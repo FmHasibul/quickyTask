@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/AuthProvider';
+import Loader from '../Loader';
 const CompeletedTask = () => {
     const { user } = useContext(AuthContext)
     // console.log(user?.email)
@@ -18,7 +20,7 @@ const CompeletedTask = () => {
         },
     });
     if (isLoading) {
-        <p>Loading...</p>
+        <Loader></Loader>
     }
     // const handleStatusUpdate = (_id) => {
     //     fetch(`http://localhost:5000/allTask/${_id}`, {
@@ -107,7 +109,13 @@ const CompeletedTask = () => {
                         </table>
                     </div>
 
-                    : <p className='flex items-center justify-center font-extrabold '>You didn't COMPLETED any task yet</p>
+                    : <>
+                        <p className='flex items-center justify-center font-extrabold '>You didn't COMPLETED any task yet</p>
+                        <Link to='/addTask'><button aria-label="Scroll down"
+                            className="flex items-center justify-center w-32 h-10 mx-auto duration-300 transform border border-gray-400  hover:text-teal-400 hover:border-teal-400 hover:shadow hover:scale-110" >Add Task</button></Link>
+
+
+                    </>
             }
 
         </div>

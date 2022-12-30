@@ -19,7 +19,7 @@ const Login = () => {
 
     const from = location.state?.from?.pathname || '/'
 
-
+    console.log(userEmail);
 
     const handleLoginSubmit = data => {
 
@@ -57,7 +57,7 @@ const Login = () => {
             name: displayName,
             email,
         }
-        fetch('https://http://localhost:5000/add', {
+        fetch('https://http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
