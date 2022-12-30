@@ -28,7 +28,8 @@ export const routes = createBrowserRouter([
             },
             {
                 path: '/myTask',
-                element: <MyTask />
+                element: <MyTask />,
+                // loader: () => fetch(`http://localhost:5000/allTask?email=${user?.email}`)
             },
             {
                 path: '/addTask',

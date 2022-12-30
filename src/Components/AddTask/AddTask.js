@@ -23,19 +23,19 @@ const AddTask = () => {
             .then((imgData) => {
                 if (imgData.success) {
                     // console.log(imgData.data.url);
-                    const task = {
+                    const newTask = {
                         user: user?.email,
                         name: data.name,
                         image: imgData.data.url,
                         description: data.description,
                     };
-                    console.log('test', task);
+                    console.log('test', newTask);
                     fetch('http://localhost:5000/addTask', {
                         method: 'POST',
                         headers: {
-                            'content-type': 'application.json'
+                            'content-type': 'application/json'
                         },
-                        body: JSON.stringify(task)
+                        body: JSON.stringify(newTask)
                     })
                         .then(res => res.json())
                         .then((result) => {
