@@ -1,14 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-
 import toast from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthContext/AuthProvider';
 const CompeletedTask = () => {
     const { user } = useContext(AuthContext)
     // console.log(user?.email)
     // const url = `http://localhost:5000/allTask?email=${user?.email}`
-    const navigate = useNavigate()
+
     const { data = [], isLoading, refetch } = useQuery({
         queryKey: ["userPuduct"],
         queryFn: async () => {
@@ -41,6 +39,7 @@ const CompeletedTask = () => {
     //         });
     // };
     let handleDelete = (_id) => {
+        console.log(_id);
         fetch(`http://localhost:5000/allTask/${_id}`, {
             method: "DELETE",
         })
@@ -83,8 +82,6 @@ const CompeletedTask = () => {
                             <tbody>
 
                                 {
-
-
                                     items.map(task => (
                                         <tr key={task._id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                             <td className="p-4 w-32">
@@ -110,7 +107,7 @@ const CompeletedTask = () => {
                         </table>
                     </div>
 
-                    : <p>You didn't added any task yet</p>
+                    : <p className='flex items-center justify-center font-extrabold '>You didn't COMPLETED any task yet</p>
             }
 
         </div>
